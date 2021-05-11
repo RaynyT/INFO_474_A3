@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import { useFetch } from "./hooks/useFetch";
-
+import { scaleLinear } from "d3-scale";
+import { max } from "d3-array";
+import * as d3 from "d3";
+import { text } from "d3";
 
 
 const App = () => {
@@ -9,10 +12,62 @@ const App = () => {
     );
     
     // defining constants 
-    const chartSize = 500;
-    const margin = 20;
+    // const chartSize = 500;
 
-    console.log("from hook", loading, data);
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 }, //size
+        width = 1000 - margin.left - margin.right,
+        height = 550 - margin.top - margin.bottom;
+
+    const svg = d3 // create the svg box for the viz and appending it to line-chart div
+        .select("#line-chart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // Less-than-a-high-school-diploma --> K12LESS
+    // High-school-graduates-no-college --> HIGHSCHOOL
+    // Some-college-or-associate-degree --> ASSOCIATE
+    // Bachelor-degree-and-higher --> BACHELOR 
+    data.forEach(function (d) { //parse values to int so that d3 can process them
+        //d.Month = +d.Month;
+        d.K12LESS = +d.K12LESS;
+        d.HIGHSCHOOL = +d.HIGHSCHOOL;
+        d.ASSOCIATE = +d.ASSOCIATE;
+        d.BACHELOR = +d.BACHELOR;
+    });
+
+    const xScale = scaleLinear() // MONTH - YEAR
+        .domain([0, max(data, function (d) { return d.K12LESS; })]).nice()
+        .range([0, width])
+    svg.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(xScale));
+
+    const yScale = scaleLinear() // HIGH SCHOOL
+        .domain([0, max(data, function (d) { return d.HIGHSCHOOL; })]).nice()
+        .range([height, 0]);
+    svg.append("g")
+        .call(d3.axisLeft(yScale));
+
+    const valueline = d3.line() //create the line
+        .x(function (d) {
+        return xScale(d.K12LESS);
+        })
+        .y(function (d) {
+        return yScale(d.HIGHSCHOOL);
+        });
+    
+    svg.append("path") // add the line to svg
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", 1.5)
+        .attr("d", valueline);
+
+
+    //console.log("from hook", loading, data);
 
     return(
         <div className="vis">
@@ -24,10 +79,7 @@ const App = () => {
 
             {/* Visualization */}
             <h3>Visualization name goes here</h3>
-            <svg width={chartSize + 500} height={chartSize} style={{border : "1px solid black"}}> 
-
-            </svg>
-
+            <div id="line-chart" ></div>
 
         </div>
 
