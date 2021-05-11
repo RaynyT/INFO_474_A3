@@ -26279,9 +26279,9 @@ try {
   var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
-    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv");
-    // defining constants
-    // const chartSize = 500;
+    // loading in data
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/lineChart_akoly/data/Data.csv");
+    // defining constants like height, width, and margin
     const margin = {
       top: 20,
       right: 20,
@@ -26291,24 +26291,33 @@ try {
     width = 1000 - margin.left - margin.right, height = 550 - margin.top - margin.bottom;
     const svg = _d.// create the svg box for the viz and appending it to line-chart div
     select("#line-chart").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", `translate(${margin.left}, ${margin.top})`);
+    const timeParse = _d.timeParse(`%b-%y`);
     // Less-than-a-high-school-diploma --> K12LESS
     // High-school-graduates-no-college --> HIGHSCHOOL
     // Some-college-or-associate-degree --> ASSOCIATE
     // Bachelor-degree-and-higher --> BACHELOR
-    data.forEach(function (d) {
+    let formatDate = data.map(function (d) {
       // parse values to int so that d3 can process them
-      // d.Month = +d.Month;
+      d.Month = timeParse(d.Month);
+      // // When reading the csv, format variables
       d.K12LESS = +d.K12LESS;
       d.HIGHSCHOOL = +d.HIGHSCHOOL;
       d.ASSOCIATE = +d.ASSOCIATE;
       d.BACHELOR = +d.BACHELOR;
+      return d;
     });
-    const xScale = _d3Scale.scaleLinear().// MONTH - YEAR
-    domain([0, _d3Array.max(data, function (d) {
-      return d.K12LESS;
-    })]).nice().range([0, width]);
+    console.log(formatDate);
+    if (!loading) {
+      console.log(data[0].Month);
+    }
+    // When reading the csv, I must format variables:
+    // data.forEach(function(d){
+    // d.Month = d3.timeParse("%b-%y")(d.Month)
+    // });
+    const xScale = _d3Scale.scaleTime().// x-axis for MONTH - YEAR
+    domain([_d.min(data, d => d.Month), _d.max(data, d => d.Month)]).nice().range([0, width]);
     svg.append("g").attr("transform", `translate(0, ${height})`).call(_d.axisBottom(xScale));
-    const yScale = _d3Scale.scaleLinear().// HIGH SCHOOL
+    const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
     domain([0, _d3Array.max(data, function (d) {
       return d.HIGHSCHOOL;
     })]).nice().range([height, 0]);
@@ -26328,42 +26337,42 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73,
+          lineNumber: 89,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74,
+          lineNumber: 90,
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76,
+          lineNumber: 92,
           columnNumber: 13
         }
       }, " Dataset: Unemployment rates for persons 25 years and older by educational attainment"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77,
+          lineNumber: 93,
           columnNumber: 13
         }
       }, " About the dataset: place holder"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78,
+          lineNumber: 94,
           columnNumber: 13
         }
       }, " Analysis questions: place holder"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81,
+          lineNumber: 97,
           columnNumber: 13
         }
       }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26371,7 +26380,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82,
+          lineNumber: 98,
           columnNumber: 13
         }
       }))
