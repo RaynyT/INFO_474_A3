@@ -11,7 +11,7 @@ const App = () => {
     const [data, loading] = useFetch(
         "https://raw.githubusercontent.com/RaynyT/INFO_474_A3/linegraph_jisu/data/Data.csv"
     );
-
+    
     const timeParse = d3.timeParse(`%b-%y`);
 
     let formatData = data.map(function (d) { //parse values to int so that d3 can process them
