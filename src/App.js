@@ -9,7 +9,7 @@ const App = () => {
     );
 
     data = data.map(function (d) { //parse values to int so that d3 can process them
-        d.MONTH = +d.MONTH;
+        d.MONTH = +d.Month;
         d.K12LESS = +d.K12LESS;
         d.HIGHSCHOOL = +d.HIGHSCHOOL;
         d.ASSOCIATE = +d.ASSOCIATE;
