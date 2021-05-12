@@ -9,7 +9,7 @@ import { scaleLinear, scaleTime } from "d3-scale"
 
 const App = () => {
     const [data, loading] = useFetch(
-        "https://raw.githubusercontent.com/RaynyT/INFO_474_A3/linegraph_jisu/data/Data.csv"
+        "https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv"
     );
     
     const timeParse = d3.timeParse(`%b-%y`);
