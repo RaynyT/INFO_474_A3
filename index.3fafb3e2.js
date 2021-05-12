@@ -26279,7 +26279,7 @@ try {
   var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
-    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/linegraph_jisu/data/Data.csv");
+    const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv");
     const timeParse = _d.timeParse(`%b-%y`);
     let formatData = data.map(function (d) {
       // parse values to int so that d3 can process them
