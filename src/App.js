@@ -25,7 +25,7 @@ const App = () => {
     });
 
     // defining constants like height, width, and margin 
-    const margin = { top: 100, right: 20, bottom: 30, left: 50 }, //size
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 }, //size
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
@@ -45,7 +45,7 @@ const App = () => {
         .call(d3.axisBottom(xScale)); 
 
     const yScale = scaleLinear() // y axis for HIGH SCHOOL
-        .domain([0, max(data, function (d) { return d.HIGHSCHOOL; })]).nice()
+        .domain([0, 25])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(yScale));
