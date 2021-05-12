@@ -26274,7 +26274,7 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _hooksUseFetch = require("./hooks/useFetch");
   var _d = require("d3");
-  var _d3Array = require("d3-array");
+  require("d3-array");
   var _d3Scale = require("d3-scale");
   var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   const App = () => {
@@ -26292,7 +26292,7 @@ try {
     });
     // defining constants like height, width, and margin
     const margin = {
-      top: 100,
+      top: 20,
       right: 20,
       bottom: 30,
       left: 50
@@ -26304,9 +26304,7 @@ try {
     domain([_d.min(data, d => d.Month), _d.max(data, d => d.Month)]).nice().range([0, width]);
     svg.append("g").attr("transform", `translate(0, ${height})`).call(_d.axisBottom(xScale));
     const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
-    domain([0, _d3Array.max(data, function (d) {
-      return d.HIGHSCHOOL;
-    })]).nice().range([height, 0]);
+    domain([0, 25]).range([height, 0]);
     svg.append("g").call(_d.axisLeft(yScale));
     /*Create 4 lines*/
     const k12lessLine = _d.line().// create the line
