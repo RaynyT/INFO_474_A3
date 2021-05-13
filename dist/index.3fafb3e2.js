@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
+  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26276,7 +26276,11 @@ try {
   var _d = require("d3");
   require("d3-array");
   var _d3Scale = require("d3-scale");
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
+  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\App.js", _s = $RefreshSig$();
+  // References:
+  // https://www.d3-graph-gallery.com/graph/interactivity_button.html
+  // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
+  // Checkboxes: https://www.d3-graph-gallery.com/graph/bubblemap_buttonControl.html
   const App = () => {
     _s();
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv");
@@ -26300,91 +26304,227 @@ try {
     width = 1000 - margin.left - margin.right, height = 550 - margin.top - margin.bottom;
     const svg = _d.// create the svg box for the viz and appending it to line-chart div
     select("#line-chart").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", `translate(${margin.left}, ${margin.top})`);
+    // List of groups (here I have one group per column)
+    var allGroup = ["K12LESS", "HIGHSCHOOL", "ASSOCIATE", "BACHELOR"];
+    // Reformat the data: we need an array of arrays of {x, y} tuples
+    var dataReady = allGroup.map(function (grpName) {
+      // .map allows to do something for each element of the list
+      return {
+        name: grpName,
+        values: data.map(function (d) {
+          return {
+            time: d.Month,
+            value: +d[grpName]
+          };
+        })
+      };
+    });
+    var myColor = _d.scaleOrdinal().domain(allGroup).range(_d.schemeSet2);
     const xScale = _d3Scale.scaleTime().// x-axis for MONTH - YEAR
     domain([_d.min(formatData, d => d.Month), _d.max(formatData, d => d.Month)]).nice().range([0, width]);
     svg.append("g").attr("transform", `translate(0, ${height})`).call(_d.axisBottom(xScale));
     const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
     domain([0, 25]).range([height, 0]);
     svg.append("g").call(_d.axisLeft(yScale));
+    // Add the lines
+    var line = _d.line().x(function (d) {
+      return xScale(+d.time);
+    }).y(function (d) {
+      return yScale(+d.value);
+    });
+    svg.selectAll("myLines").data(dataReady).enter().append("path").attr("id", function (d) {
+      return d.name;
+    }).attr("d", function (d) {
+      return line(d.values);
+    }).attr("stroke", function (d) {
+      return myColor(d.name);
+    }).style("stroke-width", 4).style("fill", "none");
+    // Add a legend (interactive)
+    svg.selectAll("myLegend").data(dataReady).enter().append('g').append("text").attr("x", function (d, i) {
+      return 50 + i * 120;
+    }).attr("y", 30).attr("id", function (d) {
+      return d.name + "-text";
+    }).text(function (d) {
+      return d.name;
+    }).style("fill", function (d) {
+      return myColor(d.name);
+    }).style("font-size", 15);
+    // .on("click", function(e, d) {
+    // console.log(d)
+    // // is the element currently visible ?
+    // currentOpacity = d3.selectAll("#" + d.name).style("opacity")
+    // // Change the opacity: from 0 to 1 or from 1 to 0
+    // d3.selectAll("#" + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
+    // });
+    // manually add add in event listener bc its not working on the legend for some reason
+    svg.select("#K12LESS-text").on("click", function (e, d) {
+      // is the element currently visible ?
+      currentOpacity = _d.select("#K12LESS").style("opacity");
+      // Change the opacity: from 0 to 1 or from 1 to 0
+      _d.select("#K12LESS").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+    });
+    svg.select("#HIGHSCHOOL-text").on("click", function (e, d) {
+      // is the element currently visible ?
+      currentOpacity = _d.select("#HIGHSCHOOL").style("opacity");
+      // Change the opacity: from 0 to 1 or from 1 to 0
+      _d.select("#HIGHSCHOOL").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+    });
+    svg.select("#ASSOCIATE-text").on("click", function (e, d) {
+      // is the element currently visible ?
+      currentOpacity = _d.select("#ASSOCIATE").style("opacity");
+      // Change the opacity: from 0 to 1 or from 1 to 0
+      _d.select("#ASSOCIATE").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+    });
+    svg.select("#BACHELOR-text").on("click", function (e, d) {
+      // is the element currently visible ?
+      currentOpacity = _d.select("#BACHELOR").style("opacity");
+      // Change the opacity: from 0 to 1 or from 1 to 0
+      _d.select("#BACHELOR").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+    });
     /*Create 4 lines*/
-    const k12lessLine = _d.line().// create the line
-    x(function (d) {
-      return xScale(d.Month);
-    }).y(function (d) {
-      return yScale(d.K12LESS);
-    });
-    const highschoolLine = _d.line().x(function (d) {
-      return xScale(d.Month);
-    }).y(function (d) {
-      return yScale(d.HIGHSCHOOL);
-    });
-    const associateLine = _d.line().x(function (d) {
-      return xScale(d.Month);
-    }).y(function (d) {
-      return yScale(d.ASSOCIATE);
-    });
-    const bachelorLine = _d.line().x(function (d) {
-      return xScale(d.Month);
-    }).y(function (d) {
-      return yScale(d.BACHELOR);
-    });
+    // const k12lessLine = d3.line() //create the line
+    // .x(function (d) {
+    // return xScale(d.Month);
+    // })
+    // .y(function (d) {
+    // return yScale(d.K12LESS);
+    // });
+    // const highschoolLine = d3.line()
+    // .x(function (d) {
+    // return xScale(d.Month);
+    // })
+    // .y(function (d) {
+    // return yScale(d.HIGHSCHOOL);
+    // });
+    // const associateLine = d3.line()
+    // .x(function (d) {
+    // return xScale(d.Month);
+    // })
+    // .y(function (d) {
+    // return yScale(d.ASSOCIATE);
+    // });
+    // const bachelorLine = d3.line()
+    // .x(function (d) {
+    // return xScale(d.Month);
+    // })
+    // .y(function (d) {
+    // return yScale(d.BACHELOR);
+    // });
     /*rendering the lines on the graph*/
-    svg.append("path").// add the line to svg
-    datum(formatData).attr("fill", "none").attr("stroke", "black").attr("stroke-width", 1.5).attr("d", k12lessLine);
-    svg.append("path").datum(formatData).attr("fill", "none").attr("stroke", "red").attr("stroke-width", 1.5).attr("d", highschoolLine);
-    svg.append("path").datum(formatData).attr("fill", "none").attr("stroke", "blue").attr("stroke-width", 1.5).attr("d", associateLine);
-    svg.append("path").datum(formatData).attr("fill", "none").attr("stroke", "green").attr("stroke-width", 1.5).attr("d", bachelorLine);
-    console.log("from hook", loading, formatData);
+    // svg.append("path") // add the line to svg
+    // .datum(formatData)
+    // .attr("fill", "none")
+    // .attr("stroke", "black")
+    // .attr("stroke-width", 1.5)
+    // .attr("d", k12lessLine)
+    // .attr("className", "K12LESS");
+    // svg.append("path")
+    // .datum(formatData)
+    // .attr("fill", "none")
+    // .attr("stroke", "red")
+    // .attr("stroke-width", 1.5)
+    // .attr("d", highschoolLine)
+    // .attr("className", "HIGHSCHOOL");
+    // svg.append("path")
+    // .datum(formatData)
+    // .attr("fill", "none")
+    // .attr("stroke", "blue")
+    // .attr("stroke-width", 1.5)
+    // .attr("d", associateLine)
+    // .attr("className", "ASSOCIATE");
+    // svg.append("path")
+    // .datum(formatData)
+    // .attr("fill", "none")
+    // .attr("stroke", "green")
+    // .attr("stroke-width", 1.5)
+    // .attr("d", bachelorLine)
+    // .attr("className", "BACHELOR");
+    // console.log("from hook", loading, formatData);
+    /*Checkboxes*/
+    // const update = () => {
+    // console.log("im here")
+    // // For each check box:
+    // d3.selectAll(".checkbox").each(function(d) {
+    // cb = d3.select(this);
+    // grp = cb.property("value");
+    // if (cb.property("checked")) { // If the box is check, I show the group
+    // svg.select("." + grp)
+    // .transition()
+    // .duration(1000)
+    // .style("opacity", 1);
+    // } else { // Otherwise I hide it
+    // svg.select("." + grp)
+    // .transition()
+    // .duration(1000)
+    // .style("opacity", 0);
+    // }
+    // });
+    // }
+    // d3.selectAll(".checkbox").attr("checked", "checked"); //initialize checkboxes as checked
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         className: "vis",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119,
+          lineNumber: 228,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 120,
+          lineNumber: 229,
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122,
+          lineNumber: 231,
           columnNumber: 13
         }
       }, " Dataset: Unemployment rates for persons 25 years and older by educational attainment"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 123,
+          lineNumber: 232,
           columnNumber: 13
         }
       }, " About the dataset: place holder"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124,
+          lineNumber: 233,
           columnNumber: 13
         }
-      }, " Analysis questions: place holder"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+      }, " Analysis questions: place holder"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 127,
+          lineNumber: 234,
           columnNumber: 13
         }
-      }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+      }), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 237,
+          columnNumber: 13
+        }
+      }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 238,
+          columnNumber: 13
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("div", {
         id: "line-chart",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128,
+          lineNumber: 252,
           columnNumber: 13
         }
       }))
@@ -26403,7 +26543,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X"}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
