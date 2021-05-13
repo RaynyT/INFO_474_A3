@@ -32,6 +32,8 @@ const App = () => {
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
+if (loading === true) { // Prevents extra appending
+
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
         .select("#line-chart")
         .append("svg")
@@ -223,7 +225,7 @@ const App = () => {
     //     });
     // }
     // d3.selectAll(".checkbox").attr("checked", "checked"); //initialize checkboxes as checked
-
+};
     return(
         <div className="vis">
             <p>{loading && "Loading data!"}</p>
