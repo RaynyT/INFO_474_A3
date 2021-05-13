@@ -48,13 +48,14 @@ const App = () => {
     // Create Max Slider State
     const [maxYear, setMaxYear] = useState(2021);
 
-
+    // styling slider
     const useStyles = makeStyles({
         root: {
             width: 300,
         },
     });
           
+    // displaying value for slider 
     function valuetext(value) {
         return `${value}`;
     }
@@ -67,7 +68,7 @@ const App = () => {
     }
 
 
-    if (loading === true) { // Prevents extra appending
+if (loading === true) { // Prevents extra appending
 
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
     .select("#line-chart")
