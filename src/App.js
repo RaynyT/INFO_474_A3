@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import { useFetch } from "./hooks/useFetch";
 import { text } from "d3";
 import * as d3 from "d3";
-import { max } from "d3-array"
+import { max, min } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
+import ReactSlider from 'react-slider'
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
 
         return d;
     });
+
 
     // defining constants like height, width, and margin 
     const margin = { top: 20, right: 20, bottom: 30, left: 50 }, //size
@@ -49,6 +51,24 @@ const App = () => {
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(yScale));
+
+
+
+   
+
+
+    // Create Min Slider State
+    const [minYear, setMinYear] = useState(d3.min(data, d => d.Month));
+    console.log("Min Year: " + minYear + " xScaleMin: " + d3.min(data, d => d.Month));
+
+    // Create Max Slider State
+    const [maxYear, setMaxYear] = useState(d3.max(data, d => d.Month));
+    console.log("Max Year: " + maxYear + " xScaleMin: " + d3.max(data, d => d.Month));
+
+
+
+
+
 
     /* Create 4 lines */
 
@@ -127,6 +147,24 @@ const App = () => {
             <h3>Visualization name goes here</h3>
             <div id="line-chart" ></div>
 
+            
+
+            <div>
+            <ReactSlider
+                className="horizontal-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                defaultValue={[minYear, maxYear]} // Have this be the range (Array) of time
+                min={minYear} // Min time that shows up
+                max={maxYear} // Max Time that shows up
+                ariaLabel={['Lower thumb', 'Upper thumb']}
+                ariaValuetext={state => `Thumb value ${state.valueNow}`}
+                renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                pearling
+                minDistance={1}
+                withTracks
+            />
+            </div>
 
         </div>
 
