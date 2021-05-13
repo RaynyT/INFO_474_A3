@@ -1054,7 +1054,11 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
+<<<<<<< HEAD
   var _jsxFileName = "C:\\Users\\17hon\\Documents\\UWClassDocuments\\Info\\Info-474\\Homework3\\INFO_474_A3\\src\\index.js";
+=======
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26276,6 +26280,7 @@ try {
   var _d = require("d3");
   require("d3-array");
   var _d3Scale = require("d3-scale");
+<<<<<<< HEAD
   require('react-slider');
   var _materialUiCoreStyles = require('@material-ui/core/styles');
   var _materialUiCoreTypography = require('@material-ui/core/Typography');
@@ -26283,6 +26288,9 @@ try {
   var _materialUiCoreSlider = require('@material-ui/core/Slider');
   var _materialUiCoreSliderDefault = _parcelHelpers.interopDefault(_materialUiCoreSlider);
   var _jsxFileName = "C:\\Users\\17hon\\Documents\\UWClassDocuments\\Info\\Info-474\\Homework3\\INFO_474_A3\\src\\App.js", _s = $RefreshSig$();
+=======
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
   // References:
   // https://www.d3-graph-gallery.com/graph/interactivity_button.html
   // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
@@ -26308,6 +26316,7 @@ try {
       left: 50
     }, // size
     width = 1000 - margin.left - margin.right, height = 550 - margin.top - margin.bottom;
+<<<<<<< HEAD
     // Create Min Slider State
     const [minYear, setMinYear] = _react.useState(2001);
     // Create Max Slider State
@@ -26325,16 +26334,40 @@ try {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+=======
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
     if (loading === true) {
       // Prevents extra appending
       const svg = _d.// create the svg box for the viz and appending it to line-chart div
       select("#line-chart").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", `translate(${margin.left}, ${margin.top})`);
+<<<<<<< HEAD
       const xScale = _d3Scale.scaleTime().// x-axis for MONTH - YEAR
       domain([_d.min(data, d => d.Month), _d.max(data, d => d.Month)]).nice().range([0, width]);
+=======
+      // List of groups (here I have one group per column)
+      var allGroup = ["K12LESS", "HIGHSCHOOL", "ASSOCIATE", "BACHELOR"];
+      // Reformat the data: we need an array of arrays of {x, y} tuples
+      var dataReady = allGroup.map(function (grpName) {
+        // .map allows to do something for each element of the list
+        return {
+          name: grpName,
+          values: data.map(function (d) {
+            return {
+              time: d.Month,
+              value: +d[grpName]
+            };
+          })
+        };
+      });
+      var myColor = _d.scaleOrdinal().domain(allGroup).range(_d.schemeSet2);
+      const xScale = _d3Scale.scaleTime().// x-axis for MONTH - YEAR
+      domain([_d.min(formatData, d => d.Month), _d.max(formatData, d => d.Month)]).nice().range([0, width]);
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
       svg.append("g").attr("transform", `translate(0, ${height})`).call(_d.axisBottom(xScale));
       const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
       domain([0, 25]).range([height, 0]);
       svg.append("g").call(_d.axisLeft(yScale));
+<<<<<<< HEAD
       /*Create 4 lines*/
       const k12lessLine = _d.line().// create the line
       x(function (d) {
@@ -26366,48 +26399,131 @@ try {
     }
     ;
     console.log("from hook", loading, data);
+=======
+      // Add the lines
+      var line = _d.line().x(function (d) {
+        return xScale(+d.time);
+      }).y(function (d) {
+        return yScale(+d.value);
+      });
+      svg.selectAll("myLines").data(dataReady).enter().append("path").attr("id", function (d) {
+        return d.name;
+      }).attr("d", function (d) {
+        return line(d.values);
+      }).attr("stroke", function (d) {
+        return myColor(d.name);
+      }).style("stroke-width", 4).style("fill", "none");
+      // Add a legend (interactive)
+      svg.selectAll("myLegend").data(dataReady).enter().append('g').append("text").attr("x", function (d, i) {
+        return 50 + i * 120;
+      }).attr("y", 30).attr("id", function (d) {
+        return d.name + "-text";
+      }).text(function (d) {
+        return d.name;
+      }).style("fill", function (d) {
+        return myColor(d.name);
+      }).style("font-size", 15);
+      // .on("click", function(e, d) {
+      // console.log(d)
+      // // is the element currently visible ?
+      // currentOpacity = d3.selectAll("#" + d.name).style("opacity")
+      // // Change the opacity: from 0 to 1 or from 1 to 0
+      // d3.selectAll("#" + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
+      // });
+      // manually add add in event listener bc its not working on the legend for some reason
+      svg.select("#K12LESS-text").on("click", function (e, d) {
+        // is the element currently visible ?
+        currentOpacity = _d.select("#K12LESS").style("opacity");
+        // Change the opacity: from 0 to 1 or from 1 to 0
+        _d.select("#K12LESS").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+      });
+      svg.select("#HIGHSCHOOL-text").on("click", function (e, d) {
+        // is the element currently visible ?
+        currentOpacity = _d.select("#HIGHSCHOOL").style("opacity");
+        // Change the opacity: from 0 to 1 or from 1 to 0
+        _d.select("#HIGHSCHOOL").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+      });
+      svg.select("#ASSOCIATE-text").on("click", function (e, d) {
+        // is the element currently visible ?
+        currentOpacity = _d.select("#ASSOCIATE").style("opacity");
+        // Change the opacity: from 0 to 1 or from 1 to 0
+        _d.select("#ASSOCIATE").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+      });
+      svg.select("#BACHELOR-text").on("click", function (e, d) {
+        // is the element currently visible ?
+        currentOpacity = _d.select("#BACHELOR").style("opacity");
+        // Change the opacity: from 0 to 1 or from 1 to 0
+        _d.select("#BACHELOR").transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+      });
+    }
+    ;
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         className: "vis",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 162,
+=======
+          lineNumber: 230,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 163,
+=======
+          lineNumber: 231,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 165,
+=======
+          lineNumber: 233,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, " Dataset: Unemployment rates for persons 25 years and older by educational attainment"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 166,
+=======
+          lineNumber: 234,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, " About the dataset: place holder"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 167,
+=======
+          lineNumber: 235,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, " Analysis questions: place holder"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 170,
+=======
+          lineNumber: 236,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26415,7 +26531,11 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 171,
+=======
+          lineNumber: 239,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26423,7 +26543,11 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 175,
+=======
+          lineNumber: 240,
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
           columnNumber: 13
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_materialUiCoreTypographyDefault.default, {
@@ -26432,6 +26556,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 176,
           columnNumber: 17
         }
@@ -26446,6 +26571,10 @@ try {
           fileName: _jsxFileName,
           lineNumber: 179,
           columnNumber: 17
+=======
+          lineNumber: 254,
+          columnNumber: 13
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
         }
       })))
     );

@@ -41,6 +41,7 @@ const App = () => {
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
+<<<<<<< HEAD
 
     // Create Min Slider State
     const [minYear, setMinYear] = useState(2001);
@@ -53,6 +54,29 @@ const App = () => {
         root: {
             width: 300,
         },
+=======
+if (loading === true) { // Prevents extra appending
+
+    const svg = d3 // create the svg box for the viz and appending it to line-chart div
+        .select("#line-chart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // List of groups (here I have one group per column)
+    var allGroup = ["K12LESS", "HIGHSCHOOL", "ASSOCIATE", "BACHELOR"];
+
+    // Reformat the data: we need an array of arrays of {x, y} tuples
+    var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
+      return {
+        name: grpName,
+        values: data.map(function(d) {
+          return {time: d.Month, value: +d[grpName]};
+        })
+      };
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
     });
           
     function valuetext(value) {
@@ -156,8 +180,68 @@ const App = () => {
         .attr("d", bachelorLine);
 };
 
+<<<<<<< HEAD
     console.log("from hook", loading, data);
 
+=======
+    // svg.append("path") // add the line to svg
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "black")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", k12lessLine)
+    //     .attr("className", "K12LESS");
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "red")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", highschoolLine)
+    //     .attr("className", "HIGHSCHOOL");
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "blue")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", associateLine)
+    //     .attr("className", "ASSOCIATE");    
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "green")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", bachelorLine)
+    //     .attr("className", "BACHELOR");    
+
+    // console.log("from hook", loading, formatData);
+
+    /* Checkboxes */
+    // const update = () => {
+    //     console.log("im here")
+    //     // For each check box:
+    //     d3.selectAll(".checkbox").each(function(d) {
+    //         cb = d3.select(this);
+    //         grp = cb.property("value");
+
+    //         if (cb.property("checked")) { // If the box is check, I show the group
+    //             svg.select("." + grp)
+    //                 .transition()
+    //                 .duration(1000)
+    //                 .style("opacity", 1);
+    //         } else { // Otherwise I hide it
+    //             svg.select("." + grp)
+    //                 .transition()
+    //                 .duration(1000)
+    //                 .style("opacity", 0);
+    //         }
+    //     });
+    // }
+    // d3.selectAll(".checkbox").attr("checked", "checked"); //initialize checkboxes as checked
+};
+>>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
     return(
         <div className="vis">
             <p>{loading && "Loading data!"}</p>
