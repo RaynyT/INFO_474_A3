@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\index.js";
+  var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26276,7 +26276,7 @@ try {
   var _d = require("d3");
   require("d3-array");
   var _d3Scale = require("d3-scale");
-  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\App.js", _s = $RefreshSig$();
+  var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   // References:
   // https://www.d3-graph-gallery.com/graph/interactivity_button.html
   // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
@@ -26543,7 +26543,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X"}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
