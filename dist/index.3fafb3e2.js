@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
+  var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26276,7 +26276,7 @@ try {
   var _d = require("d3");
   require("d3-array");
   var _d3Scale = require("d3-scale");
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
+  var _jsxFileName = "/Users/jisukim/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   // References:
   // https://www.d3-graph-gallery.com/graph/interactivity_button.html
   // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
@@ -26724,7 +26724,21 @@ try {
           lineNumber: 193,
           columnNumber: 16
         }
-      }, "Akoly commentary on the development process:"), " we ensured that everyone was working on their own feature branch and enforced pull requests to ensure main code quality which is nice because all features in the main branch works and nothing is broken. From layouting the groundwork for the project, I found that there was an issue with the way our data was formatted specifically with the month and year data, so I had to parse through that using the d3 time parse function. From a lot of googling and with the help of Kevin, it probably took me around 2 hours to parse and  display the data on the x  and y axis. Beyond this, I also helped with deploying the app and creating the extra slider feature with two other group members. Working together on the same feature proved to be a little bit difficult in that we had a lot of merging conflicts and trying to resolve that took almost as long as developing the feature itself. "))
+      }, "Akoly commentary on the development process:"), " we ensured that everyone was working on their own feature branch and enforced pull requests to ensure main code quality which is nice because all features in the main branch works and nothing is broken. From layouting the groundwork for the project, I found that there was an issue with the way our data was formatted specifically with the month and year data, so I had to parse through that using the d3 time parse function. From a lot of googling and with the help of Kevin, it probably took me around 2 hours to parse and  display the data on the x  and y axis. Beyond this, I also helped with deploying the app and creating the extra slider feature with two other group members. Working together on the same feature proved to be a little bit difficult in that we had a lot of merging conflicts and trying to resolve that took almost as long as developing the feature itself. "), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 194,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 194,
+          columnNumber: 16
+        }
+      }, "Jisu commentary on the development process:"), " When our group decided to create a data visualization for A3, we referred to Rayna’s dataset which is the unemployment data by degree level. And, we wanted to connect the data with the Covid-19 period, for example, how Covid-19 impacts the unemployment rate. For the data visualization with this topic, we came up with an idea for the functionalities such as checkbox, line chart, hover, zoom, and slider. Because the data’s values are changing depending on the time and there are four different degree levels. Therefore, we decided to create the line chart as a base of data visualization. And, checkbox, hover, and zoom are similar together, so we have unified our views with checkbox functionality to see the specific degree level of the unemployment rate. Also, to check the unemployment rate at pandemic, we discussed creating the slider.  To create the lines with four different degree levels, it took 3-4 hours to filter the data. However, after Akoly created the x-axis and y-axis, It was much easier to render the line on the webpage. I think I spent less than 2 hours creating the lines. Also, I edited the y-axis to match our dataset. After creating the lines, I tried to implement a checkbox, so in order to find the way to create the checkbox, I spent over 2 hours researching and testing the code with ours. However,  I was not able to connect lines with the checkbox. So, I asked Kayla for help to connect the checkbox with lines."))
     );
   };
   _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
@@ -26740,7 +26754,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X"}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
