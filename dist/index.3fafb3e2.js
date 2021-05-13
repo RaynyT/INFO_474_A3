@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
+  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26276,7 +26276,7 @@ try {
   var _d = require("d3");
   require("d3-array");
   var _d3Scale = require("d3-scale");
-  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
+  var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv");
