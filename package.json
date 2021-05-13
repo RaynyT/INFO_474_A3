@@ -2,11 +2,11 @@
   "name": "info_474_a3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
     "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "git subtree push --prefix docs origin gh-pages"
+    "build": "parcel build dist/index.html --public-url https://raynyt.github.io/INFO_474_A3/; rm -rf docs; mv dist docs;",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
