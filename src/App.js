@@ -182,6 +182,10 @@ const App = () => {
                     valueLabelDisplay="auto"
                     aria-labelledby="range-slider"
                     getAriaValueText={valuetext}
+                    step={1}
+                    marks
+                    min={2001}
+                    max={2021}
                 />
             </div>
 

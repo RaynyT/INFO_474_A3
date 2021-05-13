@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "C:\\Users\\17hon\\Documents\\UWClassDocuments\\Info\\Info-474\\Homework3\\INFO_474_A3\\src\\index.js";
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26282,7 +26282,7 @@ try {
   var _materialUiCoreTypographyDefault = _parcelHelpers.interopDefault(_materialUiCoreTypography);
   var _materialUiCoreSlider = require('@material-ui/core/Slider');
   var _materialUiCoreSliderDefault = _parcelHelpers.interopDefault(_materialUiCoreSlider);
-  var _jsxFileName = "C:\\Users\\17hon\\Documents\\UWClassDocuments\\Info\\Info-474\\Homework3\\INFO_474_A3\\src\\App.js", _s = $RefreshSig$();
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   // References:
   // https://www.d3-graph-gallery.com/graph/interactivity_button.html
   // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
@@ -26441,6 +26441,10 @@ try {
         valueLabelDisplay: "auto",
         "aria-labelledby": "range-slider",
         getAriaValueText: valuetext,
+        step: 1,
+        marks: true,
+        min: 2001,
+        max: 2021,
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
@@ -26463,7 +26467,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","react-slider":"5lJ8L","@material-ui/core/styles":"1Rdvd","@material-ui/core/Typography":"3wcF9","@material-ui/core/Slider":"5T3CG"}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-slider":"5lJ8L","@material-ui/core/styles":"1Rdvd","@material-ui/core/Typography":"3wcF9","@material-ui/core/Slider":"5T3CG"}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
