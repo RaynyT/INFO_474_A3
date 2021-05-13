@@ -26391,56 +26391,56 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 230,
+          lineNumber: 139,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 231,
+          lineNumber: 140,
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 233,
+          lineNumber: 142,
           columnNumber: 13
         }
       }, " Dataset: Unemployment rates for persons 25 years and older by educational attainment"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 234,
+          lineNumber: 143,
           columnNumber: 13
         }
       }, " About the dataset: place holder"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 235,
+          lineNumber: 144,
           columnNumber: 13
         }
       }, " Analysis questions: place holder"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 236,
+          lineNumber: 145,
           columnNumber: 13
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("h3", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 239,
+          lineNumber: 148,
           columnNumber: 13
         }
       }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 240,
+          lineNumber: 149,
           columnNumber: 13
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26448,10 +26448,283 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 254,
+          lineNumber: 150,
           columnNumber: 13
         }
-      }))
+      }), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 151,
+          columnNumber: 13
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 152,
+          columnNumber: 13
+        }
+      }, "Final write-up"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 153,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 153,
+          columnNumber: 16
+        }
+      }, "Rationale for our design decisions:"), " Since we were interested in seeing the unemployment rate before the pandemic compared to 1 year after the start of the pandemic, we thought that a line graph would nicely represent/display the comparison. This is because it enables us to see the progression of unemployment from year to year. Beyond that, the line chart allows us to see different high and low points of unemployment rates. "), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 158,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 158,
+          columnNumber: 16
+        }
+      }, "Overview of work distribution:"), " It was really difficult to split the work among group members since we are all working on the same visualization/chart. Though, we found a way to collaborate in that we had one person lay down the groundwork in creating the original chart/axis and parsing through the data. Then we assigned different features like displaying the line chart, filtering checkbox, and slider year to different individuals. Below is how we split up the work. Individuals with higher level difficulty features were able to focus on just that feature."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 164,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 164,
+          columnNumber: 16
+        }
+      }, "Akoly's to-do list:")), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 165,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 166,
+          columnNumber: 17
+        }
+      }, "Create chart and axes "), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 167,
+          columnNumber: 17
+        }
+      }, "Break down year by year"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 168,
+          columnNumber: 17
+        }
+      }, "Set Axis Labels"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 169,
+          columnNumber: 17
+        }
+      }, "Parse data with date time"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 170,
+          columnNumber: 17
+        }
+      }, "Create Basic Structure for Web App, Html, CSS, JS folders and files")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 172,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 172,
+          columnNumber: 16
+        }
+      }, "Jisue's to-do list:")), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 173,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 174,
+          columnNumber: 17
+        }
+      }, "Display line chart ")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 176,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 176,
+          columnNumber: 16
+        }
+      }, "Kayla's to-do list:")), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 177,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 178,
+          columnNumber: 17
+        }
+      }, "Checkboxes - Filter based on degree level feature")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 180,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 180,
+          columnNumber: 16
+        }
+      }, "Alex's to-do list:")), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 181,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 182,
+          columnNumber: 17
+        }
+      }, "Zooming/slider feature"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 183,
+          columnNumber: 17
+        }
+      }, "Data write up")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 185,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 185,
+          columnNumber: 16
+        }
+      }, "Rayna's to-do list:")), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 186,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 187,
+          columnNumber: 17
+        }
+      }, "Publish to GitHub Pages"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 188,
+          columnNumber: 17
+        }
+      }, "Data write up"), /*#__PURE__*/_reactDefault.default.createElement("li", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 189,
+          columnNumber: 17
+        }
+      }, "Create Basic Structure for Web App, Html, CSS, JS folders and files")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 191,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 191,
+          columnNumber: 16
+        }
+      }, "Overview of the development process:")), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 192,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 192,
+          columnNumber: 16
+        }
+      }, "Alex commentary on the development process:"), " When we first met as a group, our first order of business was to figure out which dataset we were going to use. From the 3 different datasets we used, we decided to focus our efforts on the field of Unemployment in America. Unfortunately, the dataset one of our group members originally used was flawed. This required us to go find another dataset that we could visualize with relative ease. The dataset we landed on was still in the realm of Unemployment, but it was more specific (Unemployment across degrees for the past 20 years). From there, we decided on the question we wanted to ask about our data and listed some of the features that would be necessary to answer said question. From the list of 4 features, we ranked them in terms of importance and separated the top and bottom half into two groups (Must have and Nice to have) We assigned ourselves to our desired tasks and set out to work. For me specifically, I chose to work on a slider that would allow us to filter the data based on year. While I was able to get a basic slider in at first, I became stuck when I tried to incorporate our own data into the slider. This was a result of the date data in our data set being in an unusual format, and not wanting to separate month from year. I worked with Akoly and Rayna on how we could potentially solve this issue. While we were trying out different ideas to make the slider work, Akoly found that just using a regular slider seemed to work better and take in our values easier than a React Slider."), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 193,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 193,
+          columnNumber: 16
+        }
+      }, "Akoly commentary on the development process:"), " we ensured that everyone was working on their own feature branch and enforced pull requests to ensure main code quality which is nice because all features in the main branch works and nothing is broken. From layouting the groundwork for the project, I found that there was an issue with the way our data was formatted specifically with the month and year data, so I had to parse through that using the d3 time parse function. From a lot of googling and with the help of Kevin, it probably took me around 2 hours to parse and  display the data on the x  and y axis. Beyond this, I also helped with deploying the app and creating the extra slider feature with two other group members. Working together on the same feature proved to be a little bit difficult in that we had a lot of merging conflicts and trying to resolve that took almost as long as developing the feature itself. "))
     );
   };
   _s(App, "Jm65JCcgUFoenM4DufkEA80vRVI=", false, function () {
