@@ -5,6 +5,8 @@ import * as d3 from "d3";
 import { max, min } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
 import ReactSlider from 'react-slider'
+import { Slider } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -58,17 +60,28 @@ const App = () => {
 
 
     // Create Min Slider State
-    const [minYear, setMinYear] = useState(d3.min(data, d => d.Month));
+    const [minYear, setMinYear] = useState(d3.min(formatData, d => d.Month));
     console.log("Min Year: " + minYear + " xScaleMin: " + d3.min(data, d => d.Month));
 
     // Create Max Slider State
-    const [maxYear, setMaxYear] = useState(d3.max(data, d => d.Month));
+    const [maxYear, setMaxYear] = useState(d3.max(formatData, d => d.Month));
     console.log("Max Year: " + maxYear + " xScaleMin: " + d3.max(data, d => d.Month));
 
 
+    const useStyles = makeStyles({
+        root: {
+          width: 300,
+        },
+    });
 
+    function valuetext(value) {
+        return `${value}`;
+    }
 
-
+    const [value, setValue] = React.useState([2001, 2021]);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     /* Create 4 lines */
 
@@ -149,7 +162,7 @@ const App = () => {
 
             
 
-            <div>
+            {/* <div>
             <ReactSlider
                 className="horizontal-slider"
                 thumbClassName="example-thumb"
@@ -164,6 +177,15 @@ const App = () => {
                 minDistance={1}
                 withTracks
             />
+            </div> */}
+            <div>
+                <Slider 
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    aria-labelledby="range-slider"
+                    getAriaValueText={valuetext}> 
+                </Slider>
             </div>
 
         </div>
