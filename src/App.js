@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import { max, min } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
 import ReactSlider from 'react-slider'
+import Slider from '@material-ui/core'
 
 
 
@@ -31,6 +32,16 @@ const App = () => {
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
+
+    // Create Min Slider State
+    const [minYear, setMinYear] = useState(2002);
+
+    // Create Max Slider State
+    const [maxYear, setMaxYear] = useState(2021);
+
+
+    if (loading === true) { 
+        
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
     .select("#line-chart")
     .append("svg")
@@ -40,7 +51,7 @@ const App = () => {
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     const xScale = scaleTime() //  x-axis for MONTH - YEAR
-        .domain([d3.min(formatData, d => d.Month), d3.max(formatData, d => d.Month)]).nice()
+        .domain([d3.min(data, d => d.Month), d3.max(data, d => d.Month)]).nice()
         .range([0, width])
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -51,22 +62,6 @@ const App = () => {
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(yScale));
-
-
-
-   
-
-
-    // Create Min Slider State
-    const [minYear, setMinYear] = useState(d3.min(data, d => d.Month));
-    console.log("Min Year: " + minYear + " xScaleMin: " + d3.min(data, d => d.Month));
-
-    // Create Max Slider State
-    const [maxYear, setMaxYear] = useState(d3.max(data, d => d.Month));
-    console.log("Max Year: " + maxYear + " xScaleMin: " + d3.max(data, d => d.Month));
-
-
-
 
 
 
@@ -104,36 +99,37 @@ const App = () => {
         return yScale(d.BACHELOR);
         });            
     /* rendering the lines on the graph */    
-
+    
     svg.append("path") // add the line to svg
-        .datum(formatData)
+        .datum(data)
         .attr("fill", "none")
         .attr("stroke", "black")
         .attr("stroke-width", 1.5)
         .attr("d", k12lessLine);
 
     svg.append("path")
-        .datum(formatData)
+        .datum(data)
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-width", 1.5)
         .attr("d", highschoolLine); 
 
     svg.append("path")
-        .datum(formatData)
+        .datum(data)
         .attr("fill", "none")
         .attr("stroke", "blue")
         .attr("stroke-width", 1.5)
         .attr("d", associateLine);         
 
     svg.append("path")
-        .datum(formatData)
+        .datum(data)
         .attr("fill", "none")
         .attr("stroke", "green")
         .attr("stroke-width", 1.5)
-        .attr("d", bachelorLine);     
+        .attr("d", bachelorLine);
+};
 
-    console.log("from hook", loading, formatData);
+    console.log("from hook", loading, data);
 
     return(
         <div className="vis">
@@ -152,9 +148,10 @@ const App = () => {
             <div>
             <ReactSlider
                 className="horizontal-slider"
-                thumbClassName="example-thumb"
+                thumbClassName="thumb-1"
+                thumbActiveClassName="thumb-1"
                 trackClassName="example-track"
-                defaultValue={[minYear, maxYear]} // Have this be the range (Array) of time
+                defaultValue={[minYear,maxYear]} // Have this be the min and max
                 min={minYear} // Min time that shows up
                 max={maxYear} // Max Time that shows up
                 ariaLabel={['Lower thumb', 'Upper thumb']}
@@ -166,11 +163,13 @@ const App = () => {
             />
             </div>
 
+
         </div>
 
 
     );
 
 };
+
 
 export default App;
