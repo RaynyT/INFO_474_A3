@@ -55,14 +55,14 @@ const App = () => {
 
 
     const xScale = scaleTime() //  x-axis for MONTH - YEAR
-        .domain([d3.min(data, d => d.Month), d3.max(data, d => d.Month)]).nice()
+        .domain([d3.min(formatDate, d => d.Month), d3.max(formatDate, d => d.Month)]).nice()
         .range([0, width])
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xScale));
 
     const yScale = scaleLinear() // y axis for HIGH SCHOOL
-        .domain([0, max(data, function (d) { return d.HIGHSCHOOL; })]).nice()
+        .domain([0, d3.max(formatDate, d => d.HIGHSCHOOL)]).nice()
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(yScale));

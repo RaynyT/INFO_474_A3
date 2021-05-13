@@ -26274,7 +26274,7 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _hooksUseFetch = require("./hooks/useFetch");
   var _d3Scale = require("d3-scale");
-  var _d3Array = require("d3-array");
+  require("d3-array");
   var _d = require("d3");
   var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
   const App = () => {
@@ -26315,12 +26315,10 @@ try {
     // d.Month = d3.timeParse("%b-%y")(d.Month)
     // });
     const xScale = _d3Scale.scaleTime().// x-axis for MONTH - YEAR
-    domain([_d.min(data, d => d.Month), _d.max(data, d => d.Month)]).nice().range([0, width]);
+    domain([_d.min(formatDate, d => d.Month), _d.max(formatDate, d => d.Month)]).nice().range([0, width]);
     svg.append("g").attr("transform", `translate(0, ${height})`).call(_d.axisBottom(xScale));
     const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
-    domain([0, _d3Array.max(data, function (d) {
-      return d.HIGHSCHOOL;
-    })]).nice().range([height, 0]);
+    domain([0, _d.max(formatDate, d => d.HIGHSCHOOL)]).nice().range([height, 0]);
     svg.append("g").call(_d.axisLeft(yScale));
     const valueline = _d.line().// create the line
     x(function (d) {
