@@ -38,7 +38,7 @@ const App = () => {
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     const xScale = scaleTime() //  x-axis for MONTH - YEAR
-        .domain([d3.min(data, d => d.Month), d3.max(data, d => d.Month)]).nice()
+        .domain([d3.min(formatData, d => d.Month), d3.max(formatData, d => d.Month)]).nice()
         .range([0, width])
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -86,34 +86,34 @@ const App = () => {
     /* rendering the lines on the graph */    
 
     svg.append("path") // add the line to svg
-        .datum(data)
+        .datum(formatData)
         .attr("fill", "none")
         .attr("stroke", "black")
         .attr("stroke-width", 1.5)
         .attr("d", k12lessLine);
 
     svg.append("path")
-        .datum(data)
+        .datum(formatData)
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-width", 1.5)
         .attr("d", highschoolLine); 
 
     svg.append("path")
-        .datum(data)
+        .datum(formatData)
         .attr("fill", "none")
         .attr("stroke", "blue")
         .attr("stroke-width", 1.5)
         .attr("d", associateLine);         
 
     svg.append("path")
-        .datum(data)
+        .datum(formatData)
         .attr("fill", "none")
         .attr("stroke", "green")
         .attr("stroke-width", 1.5)
         .attr("d", bachelorLine);     
 
-    console.log("from hook", loading, data);
+    console.log("from hook", loading, formatData);
 
     return(
         <div className="vis">
