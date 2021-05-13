@@ -2,15 +2,11 @@
   "name": "info_474_a3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
     "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "git subtree push --prefix docs origin gh-pages"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RaynyT/INFO_474_A3.git"
+    "build": "parcel build index.html --public-url https://raynyt.github.io/INFO_474_A3/; rm -rf docs; mv dist docs;",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akoly Vongdala, Rayna Tilley, Jisu Kim, Alex Honeycutt, Kayla Lee",
   "license": "MIT",
