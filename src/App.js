@@ -5,8 +5,9 @@ import * as d3 from "d3";
 import { max, min } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
 import ReactSlider from 'react-slider'
-import { Slider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
 
 
@@ -42,14 +43,32 @@ const App = () => {
 
 
     // Create Min Slider State
-    const [minYear, setMinYear] = useState(2002);
+    const [minYear, setMinYear] = useState(2001);
 
     // Create Max Slider State
     const [maxYear, setMaxYear] = useState(2021);
 
 
+    const useStyles = makeStyles({
+        root: {
+            width: 300,
+        },
+    });
+          
+    function valuetext(value) {
+        return `${value}`;
+    }
+
+    const classes = useStyles();
+    const [value, setValue] = useState([minYear, maxYear]);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
+
+
     if (loading === true) { // Prevents extra appending
-        
+
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
     .select("#line-chart")
     .append("svg")
@@ -153,22 +172,17 @@ const App = () => {
 
             
 
-            <div>
-            <ReactSlider
-                className="horizontal-slider"
-                thumbClassName="thumb-1"
-                thumbActiveClassName="thumb-1"
-                trackClassName="example-track"
-                defaultValue={[minYear,maxYear]} // Have this be the min and max
-                min={minYear} // Min time that shows up
-                max={maxYear} // Max Time that shows up
-                ariaLabel={['Lower thumb', 'Upper thumb']}
-                ariaValuetext={state => `Thumb value ${state.valueNow}`}
-                renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-                pearling
-                minDistance={1}
-                withTracks
-            />
+            <div className={classes.root}>
+                <Typography id="range-slider" gutterBottom>
+                    Year Range
+                </Typography>
+                <Slider
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    aria-labelledby="range-slider"
+                    getAriaValueText={valuetext}
+                />
             </div>
 
 
