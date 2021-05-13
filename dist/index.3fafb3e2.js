@@ -1055,10 +1055,14 @@ try {
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
 <<<<<<< HEAD
+<<<<<<< HEAD
   var _jsxFileName = "C:\\Users\\17hon\\Documents\\UWClassDocuments\\Info\\Info-474\\Homework3\\INFO_474_A3\\src\\index.js";
 =======
   var _jsxFileName = "C:\\Users\\Kayla\\Documents\\School\\4th_Year\\INFO_474\\INFO_474_A3\\src\\index.js";
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/index.js";
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26281,6 +26285,7 @@ try {
   require("d3-array");
   var _d3Scale = require("d3-scale");
 <<<<<<< HEAD
+<<<<<<< HEAD
   var _reactSlider = require('react-slider');
   var _reactSliderDefault = _parcelHelpers.interopDefault(_reactSlider);
   require('@material-ui/core');
@@ -26306,6 +26311,12 @@ try {
   // Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
   // Checkboxes: https://www.d3-graph-gallery.com/graph/bubblemap_buttonControl.html
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+  require('react-slider');
+  var _materialUiCore = require('@material-ui/core');
+  var _materialUiCoreStyles = require('@material-ui/core/styles');
+  var _jsxFileName = "/Users/akolyvongdala/Desktop/INFO_474_A3/src/App.js", _s = $RefreshSig$();
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
   const App = () => {
     _s();
     const [data, loading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/RaynyT/INFO_474_A3/main/data/Data.csv");
@@ -26397,9 +26408,34 @@ try {
     const yScale = _d3Scale.scaleLinear().// y axis for HIGH SCHOOL
     domain([0, 25]).range([height, 0]);
     svg.append("g").call(_d.axisLeft(yScale));
+<<<<<<< HEAD
     // Add the lines
     var line = _d.line().x(function (d) {
       return xScale(+d.time);
+=======
+    // Create Min Slider State
+    const [minYear, setMinYear] = _react.useState(_d.min(formatData, d => d.Month));
+    console.log("Min Year: " + minYear + " xScaleMin: " + _d.min(data, d => d.Month));
+    // Create Max Slider State
+    const [maxYear, setMaxYear] = _react.useState(_d.max(formatData, d => d.Month));
+    console.log("Max Year: " + maxYear + " xScaleMin: " + _d.max(data, d => d.Month));
+    const useStyles = _materialUiCoreStyles.makeStyles({
+      root: {
+        width: 300
+      }
+    });
+    function valuetext(value) {
+      return `${value}`;
+    }
+    const [value, setValue] = _reactDefault.default.useState([2001, 2021]);
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+    /*Create 4 lines*/
+    const k12lessLine = _d.line().// create the line
+    x(function (d) {
+      return xScale(d.Month);
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
     }).y(function (d) {
       return yScale(+d.value);
     });
@@ -26540,10 +26576,14 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 135,
 =======
           lineNumber: 228,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 152,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -26551,10 +26591,14 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 136,
 =======
           lineNumber: 229,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 153,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }, loading && "Loading data!"), /*#__PURE__*/_reactDefault.default.createElement("h3", {
@@ -26562,10 +26606,14 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 138,
 =======
           lineNumber: 231,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 155,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }, " Dataset: Unemployment rates for persons 25 years and older by educational attainment"), /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -26573,16 +26621,21 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 139,
 =======
           lineNumber: 232,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 156,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }, " About the dataset: place holder"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
 <<<<<<< HEAD
           lineNumber: 140,
 =======
@@ -26602,6 +26655,9 @@ try {
           fileName: _jsxFileName,
           lineNumber: 237,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 157,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }, "Visualization name goes here"), /*#__PURE__*/_reactDefault.default.createElement("br", {
@@ -26609,10 +26665,14 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 143,
 =======
           lineNumber: 238,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 160,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26621,16 +26681,21 @@ try {
         __source: {
           fileName: _jsxFileName,
 <<<<<<< HEAD
+<<<<<<< HEAD
           lineNumber: 144,
 =======
           lineNumber: 252,
 >>>>>>> eb2eb2d9c992c6f0114e78b4613943228213850d
+=======
+          lineNumber: 161,
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
           columnNumber: 13
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
+<<<<<<< HEAD
           lineNumber: 148,
           columnNumber: 13
         }
@@ -26663,11 +26728,31 @@ try {
           fileName: _jsxFileName,
           lineNumber: 149,
           columnNumber: 13
+=======
+          lineNumber: 181,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_materialUiCore.Slider, {
+        value: value,
+        onChange: handleChange,
+        valueLabelDisplay: "auto",
+        "aria-labelledby": "range-slider",
+        getAriaValueText: valuetext,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 182,
+          columnNumber: 17
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
         }
       })))
     );
   };
+<<<<<<< HEAD
   _s(App, "Y/20VvLsTAS1nBpxaR7QXpXo9as=", false, function () {
+=======
+  _s(App, "kBz7KMergppnn8cEJw2kAhJyUs4=", false, function () {
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
     return [_hooksUseFetch.useFetch];
   });
   _c = App;
@@ -26680,7 +26765,11 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
+<<<<<<< HEAD
 },{"react":"3b2NM","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","react-slider":"5lJ8L","@material-ui/core":"6DoV9"}],"5YU3r":[function(require,module,exports) {
+=======
+},{"react":"3b2NM","./hooks/useFetch":"5YU3r","d3":"3auhl","d3-array":"7CLUA","d3-scale":"2UZ4X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-slider":"5lJ8L","@material-ui/core":"6DoV9","@material-ui/core/styles":"1Rdvd"}],"5YU3r":[function(require,module,exports) {
+>>>>>>> 0d09f1f7fb3bb4bf42d4ae3e1780ea8ae1d5cbc7
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
