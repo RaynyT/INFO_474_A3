@@ -140,12 +140,18 @@ if (loading === true) { // Prevents extra appending
             <p>{loading && "Loading data!"}</p>
             {/* Introduction */}
             <h3> Dataset: Unemployment rates for persons 25 years and older by educational attainment</h3>
-            <p> About the dataset: place holder</p>
-            <p> Analysis questions: place holder</p>
-            <br></br>
+            <p> <b>About the dataset:</b> Our dataset comes from the <a href="https://www.bls.gov/"> U.S Bureau of Labor and Statistics </a>site which hosts many datasets and visualizations to be explored about various elements that the Bureau collects. For instance: unemployment and the associated elements like the reason for unemployment as well as duration from household data and employment information from industry which includes hourly wages and weekly hours. As our team explored the many datasets this site contains, we gravitated towards unemployment rates for persons 25 years and older by educational attainment that is seasonally adjusted. This data set intrigued us because it showcases these rates over the years of 2001 to 2021 and this period includes the recent pandemic that has impacted the world. Since this data included information throughout the pandemic, we wanted to explore how COVID-19 impacted the unemployment rates for this age period and how the education levels compared for this age group. This data specifically came from personal reporting from the household and not from industries and was gathered anonymously to protect people’s privacy. This data also showcases the percent distribution for each month which could provide interesting findings when aggregated or filtered. Interestingly though, if one were to sum all the reported educational rates, we can see that they will not usually sum to 100% and this is because not everyone submits information to the US census this, we must consider that this data does not account for all the U.S. population. Since our question focuses on 2018-2021, we included slide bar functionality to highlight the important information that would answer our question. It is clear from the data that the hierarchy of the education levels does showcase a pattern for unemployment rates but what is not visible from the raw data, is the disparities and polarizations between these four educational levels, thus this is something we will touch on in our analysis.</p>
+            <p> <b>Analysis questions:</b> What were the unemployment rates 12 months before COVID-19 started compared to the unemployment rates in the 12 months after COVID-19 started or in other terms, how have unemployment rates been impacted in the US due to COVID-19?</p>
+            <p><b>Analysis Topics:</b>
+                <ul>
+                    <li>Disparities/Polarization Between the Education Levels: Did the gaps lessen or increase?</li>
+                    <li>Peaks/Troughs: Were there any noticeable changes in unemployment around the time COVID-19 impacted the world and the U.S.?</li>
+                </ul>
+            </p>
 
             {/* Visualization */}
-            <h3>Visualization name goes here</h3>
+            <h3>Educational Disparities Throughout the Years 2001 to 2021</h3>
+            <p>Interactivity: click on legend to view individuals graph </p>
             <br></br>
             <div id="line-chart" ></div>
             <br></br>
