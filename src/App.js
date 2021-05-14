@@ -9,6 +9,7 @@ import { scaleLinear, scaleTime } from "d3-scale"
 //https://www.d3-graph-gallery.com/graph/interactivity_button.html
 //Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
 //Checkboxes: https://www.d3-graph-gallery.com/graph/bubblemap_buttonControl.html
+//Axis-lable: https://vijayt.com/post/plotting-bar-chart-d3-react/
 
 const App = () => {
     const [data, loading] = useFetch(
@@ -28,7 +29,7 @@ const App = () => {
     });
 
     // defining constants like height, width, and margin 
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 }, //size
+    const margin = { top: 20, right: 20, bottom: 50, left: 65 }, //size
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
@@ -134,6 +135,26 @@ if (loading === true) { // Prevents extra appending
         // Change the opacity: from 0 to 1 or from 1 to 0
         d3.select("#BACHELOR").transition().style("opacity", currentOpacity == 1 ? 0:1)
     });
+
+    // x-axis lable : Year
+    svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", height + margin.bottom)
+        .attr('fill', '#000')
+        .style('font-size', '20px')
+        .style('text-anchor', 'middle')
+        .text('Year');
+
+    // y-axis lable : Year
+    svg.append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr('transform', `translate(-50, ${height/2}) rotate(-90)`)
+        .attr('fill', '#000')
+        .style('font-size', '20px')
+        .style('text-anchor', 'middle')
+        .text('Unemployment Rate');    
+
 };
     return(
         <div className="vis">
@@ -151,7 +172,7 @@ if (loading === true) { // Prevents extra appending
 
             {/* Visualization */}
             <h3>Educational Disparities Throughout the Years 2001 to 2021</h3>
-            <p>Interactivity: click on legend to view individuals graph </p>
+            <p style={{ color: "#FF5147" , fontSize: "17px"}}>Interactivity: click on legend to view individuals graph ▼</p>
             <br></br>
             <div id="line-chart" ></div>
             <br></br>
