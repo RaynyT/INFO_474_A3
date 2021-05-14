@@ -41,7 +41,6 @@ const App = () => {
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
-<<<<<<< HEAD
 
     // Create Min Slider State
     const [minYear, setMinYear] = useState(2001);
@@ -53,8 +52,8 @@ const App = () => {
     const useStyles = makeStyles({
         root: {
             width: 300,
-        },
-=======
+        }});
+
 if (loading === true) { // Prevents extra appending
 
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
@@ -76,7 +75,6 @@ if (loading === true) { // Prevents extra appending
           return {time: d.Month, value: +d[grpName]};
         })
       };
->>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
     });
           
     function valuetext(value) {
@@ -117,6 +115,7 @@ if (loading === true) { // Prevents extra appending
 
 
     /* Create 4 lines */
+
 
     const k12lessLine = d3.line() //create the line
         .x(function (d) {
@@ -180,10 +179,8 @@ if (loading === true) { // Prevents extra appending
         .attr("d", bachelorLine);
 };
 
-<<<<<<< HEAD
     console.log("from hook", loading, data);
 
-=======
     // svg.append("path") // add the line to svg
     //     .datum(formatData)
     //     .attr("fill", "none")
@@ -240,8 +237,15 @@ if (loading === true) { // Prevents extra appending
     //     });
     // }
     // d3.selectAll(".checkbox").attr("checked", "checked"); //initialize checkboxes as checked
+
+    svg.select("#BACHELOR-text").on("click", function(e, d) {
+        // is the element currently visible ?
+        currentOpacity = d3.select("#BACHELOR").style("opacity")
+        // Change the opacity: from 0 to 1 or from 1 to 0
+        d3.select("#BACHELOR").transition().style("opacity", currentOpacity == 1 ? 0:1)
+    });
 };
->>>>>>> 69e6bb3cc7062a79036b63c5a4183e220495c756
+
     return(
         <div className="vis">
             <p>{loading && "Loading data!"}</p>
@@ -270,6 +274,51 @@ if (loading === true) { // Prevents extra appending
             </div>
 
 
+            <br></br>
+            <div id="line-chart" ></div>
+            <br></br>
+            <h3>Final write-up</h3>
+            <p><b>Rationale for our design decisions:</b> Since we were interested in seeing the unemployment 
+            rate before the pandemic compared to 1 year after the start of the pandemic, we thought that a line 
+            graph would nicely represent/display the comparison. This is because it enables us to see the progression 
+            of unemployment from year to year. Beyond that, the line chart allows us to see different high and low 
+            points of unemployment rates. </p>
+            <p><b>Overview of work distribution:</b> It was really difficult to split the work among group members 
+            since we are all working on the same visualization/chart. Though, we found a way to collaborate in that we had 
+            one person lay down the groundwork in creating the original chart/axis and parsing through the data. Then we assigned 
+            different features like displaying the line chart, filtering checkbox, and slider year to different individuals. 
+            Below is how we split up the work. Individuals with higher level difficulty features were able to focus on just that feature. 
+            </p>
+            <p><b>Akoly's to-do list:</b></p>
+            <ul>
+                <li>Create chart and axes </li>
+                <li>Break down year by year</li>
+                <li>Set Axis Labels</li>
+                <li>Parse data with date time</li>
+                <li>Create Basic Structure for Web App, Html, CSS, JS folders and files</li>
+            </ul>
+            <p><b>Jisue's to-do list:</b></p>
+            <ul>
+                <li>Display line chart </li>
+            </ul>
+            <p><b>Kayla's to-do list:</b></p>
+            <ul>
+                <li>Checkboxes - Filter based on degree level feature</li>
+            </ul>
+            <p><b>Alex's to-do list:</b></p>
+            <ul>
+                <li>Zooming/slider feature</li>
+                <li>Data write up</li>
+            </ul>
+            <p><b>Rayna's to-do list:</b></p>
+            <ul>
+                <li>Publish to GitHub Pages</li>
+                <li>Data write up</li>
+                <li>Create Basic Structure for Web App, Html, CSS, JS folders and files</li>
+            </ul>
+            <p><b>Overview of the development process:</b></p>
+            <p><b>Alex commentary on the development process:</b> When we first met as a group, our first order of business was to figure out which dataset we were going to use. From the 3 different datasets we used, we decided to focus our efforts on the field of Unemployment in America. Unfortunately, the dataset one of our group members originally used was flawed. This required us to go find another dataset that we could visualize with relative ease. The dataset we landed on was still in the realm of Unemployment, but it was more specific (Unemployment across degrees for the past 20 years). From there, we decided on the question we wanted to ask about our data and listed some of the features that would be necessary to answer said question. From the list of 4 features, we ranked them in terms of importance and separated the top and bottom half into two groups (Must have and Nice to have) We assigned ourselves to our desired tasks and set out to work. For me specifically, I chose to work on a slider that would allow us to filter the data based on year. While I was able to get a basic slider in at first, I became stuck when I tried to incorporate our own data into the slider. This was a result of the date data in our data set being in an unusual format, and not wanting to separate month from year. I worked with Akoly and Rayna on how we could potentially solve this issue. While we were trying out different ideas to make the slider work, Akoly found that just using a regular slider seemed to work better and take in our values easier than a React Slider.</p>
+            <p><b>Akoly commentary on the development process:</b> we ensured that everyone was working on their own feature branch and enforced pull requests to ensure main code quality which is nice because all features in the main branch works and nothing is broken. From layouting the groundwork for the project, I found that there was an issue with the way our data was formatted specifically with the month and year data, so I had to parse through that using the d3 time parse function. From a lot of googling and with the help of Kevin, it probably took me around 2 hours to parse and  display the data on the x  and y axis. Beyond this, I also helped with deploying the app and creating the extra slider feature with two other group members. Working together on the same feature proved to be a little bit difficult in that we had a lot of merging conflicts and trying to resolve that took almost as long as developing the feature itself. </p>
         </div>
 
 
