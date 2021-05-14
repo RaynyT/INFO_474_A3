@@ -48,7 +48,7 @@ const App = () => {
     // Create Max Slider State
     const [maxYear, setMaxYear] = useState(2021);
 
-
+    // styling slider
     const useStyles = makeStyles({
         root: {
             width: 300,
@@ -77,6 +77,7 @@ if (loading === true) { // Prevents extra appending
       };
     });
           
+    // displaying value for slider 
     function valuetext(value) {
         return `${value}`;
     }
@@ -89,7 +90,7 @@ if (loading === true) { // Prevents extra appending
     }
 
 
-    if (loading === true) { // Prevents extra appending
+if (loading === true) { // Prevents extra appending
 
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
     .select("#line-chart")
@@ -270,6 +271,10 @@ if (loading === true) { // Prevents extra appending
                     valueLabelDisplay="auto"
                     aria-labelledby="range-slider"
                     getAriaValueText={valuetext}
+                    step={1}
+                    marks
+                    min={2001}
+                    max={2021}
                 />
             </div>
 
