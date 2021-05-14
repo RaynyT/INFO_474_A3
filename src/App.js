@@ -2,13 +2,21 @@ import React, {useState} from "react";
 import { useFetch } from "./hooks/useFetch";
 import { text } from "d3";
 import * as d3 from "d3";
-import { max } from "d3-array"
+import { max, min } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
+import ReactSlider from 'react-slider'
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+
+
+
 
 //References:
 //https://www.d3-graph-gallery.com/graph/interactivity_button.html
 //Interactive legend: https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
 //Checkboxes: https://www.d3-graph-gallery.com/graph/bubblemap_buttonControl.html
+
 
 const App = () => {
     const [data, loading] = useFetch(
@@ -27,10 +35,24 @@ const App = () => {
         return d;
     });
 
+
     // defining constants like height, width, and margin 
     const margin = { top: 20, right: 20, bottom: 30, left: 50 }, //size
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
+
+
+    // Create Min Slider State
+    const [minYear, setMinYear] = useState(2001);
+
+    // Create Max Slider State
+    const [maxYear, setMaxYear] = useState(2021);
+
+    // styling slider
+    const useStyles = makeStyles({
+        root: {
+            width: 300,
+        }});
 
 if (loading === true) { // Prevents extra appending
 
@@ -54,13 +76,32 @@ if (loading === true) { // Prevents extra appending
         })
       };
     });
+          
+    // displaying value for slider 
+    function valuetext(value) {
+        return `${value}`;
+    }
 
-    var myColor = d3.scaleOrdinal()
-      .domain(allGroup)
-      .range(d3.schemeSet2);
+    const classes = useStyles();
+    const [value, setValue] = useState([minYear, maxYear]);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
+
+
+if (loading === true) { // Prevents extra appending
+
+    const svg = d3 // create the svg box for the viz and appending it to line-chart div
+    .select("#line-chart")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     const xScale = scaleTime() //  x-axis for MONTH - YEAR
-        .domain([d3.min(formatData, d => d.Month), d3.max(formatData, d => d.Month)]).nice()
+        .domain([d3.min(data, d => d.Month), d3.max(data, d => d.Month)]).nice()
         .range([0, width])
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -72,61 +113,131 @@ if (loading === true) { // Prevents extra appending
     svg.append("g")
         .call(d3.axisLeft(yScale));
 
-    // Add the lines
-    var line = d3.line()
-      .x(function(d) { return xScale(+d.time) })
-      .y(function(d) { return yScale(+d.value) })
-    svg.selectAll("myLines")
-      .data(dataReady)
-      .enter()
-      .append("path")
-        .attr("id", function(d){ return d.name })
-        .attr("d", function(d){ return line(d.values) } )
-        .attr("stroke", function(d){ return myColor(d.name) })
-        .style("stroke-width", 4)
-        .style("fill", "none");
 
-    // Add a legend (interactive)
-    svg.selectAll("myLegend")
-      .data(dataReady)
-      .enter()
-        .append('g')
-        .append("text")
-          .attr("x", function(d,i){ return 50 + i*120})
-          .attr("y", 30)
-          .attr("id", function(d){ return d.name + "-text" })
-          .text(function(d) { return d.name; })
-          .style("fill", function(d){ return myColor(d.name) })
-          .style("font-size", 15);
-        // .on("click", function(e, d) {
-        //     console.log(d)
-        //     // is the element currently visible ?
-        //     currentOpacity = d3.selectAll("#" + d.name).style("opacity")
-        //     // Change the opacity: from 0 to 1 or from 1 to 0
-        //     d3.selectAll("#" + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
-        // });
 
-    // manually add add in event listener bc its not working on the legend for some reason
-    svg.select("#K12LESS-text").on("click", function(e, d) {
-        // is the element currently visible ?
-        currentOpacity = d3.select("#K12LESS").style("opacity")
-        // Change the opacity: from 0 to 1 or from 1 to 0
-        d3.select("#K12LESS").transition().style("opacity", currentOpacity == 1 ? 0:1)
-    });
+    /* Create 4 lines */
 
-    svg.select("#HIGHSCHOOL-text").on("click", function(e, d) {
-        // is the element currently visible ?
-        currentOpacity = d3.select("#HIGHSCHOOL").style("opacity")
-        // Change the opacity: from 0 to 1 or from 1 to 0
-        d3.select("#HIGHSCHOOL").transition().style("opacity", currentOpacity == 1 ? 0:1)
-    });
 
-    svg.select("#ASSOCIATE-text").on("click", function(e, d) {
-        // is the element currently visible ?
-        currentOpacity = d3.select("#ASSOCIATE").style("opacity")
-        // Change the opacity: from 0 to 1 or from 1 to 0
-        d3.select("#ASSOCIATE").transition().style("opacity", currentOpacity == 1 ? 0:1)
-    });
+    const k12lessLine = d3.line() //create the line
+        .x(function (d) {
+        return xScale(d.Month);
+        })
+        .y(function (d) {
+        return yScale(d.K12LESS);
+        });       
+
+    const highschoolLine = d3.line() 
+        .x(function (d) {
+        return xScale(d.Month);
+        })
+        .y(function (d) {
+        return yScale(d.HIGHSCHOOL);
+        }); 
+
+    const associateLine = d3.line() 
+        .x(function (d) {
+        return xScale(d.Month);
+        })
+        .y(function (d) {
+        return yScale(d.ASSOCIATE);
+        });     
+
+    const bachelorLine = d3.line() 
+        .x(function (d) {
+        return xScale(d.Month);
+        })
+        .y(function (d) {
+        return yScale(d.BACHELOR);
+        });            
+    /* rendering the lines on the graph */    
+    
+    svg.append("path") // add the line to svg
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", 1.5)
+        .attr("d", k12lessLine);
+
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "red")
+        .attr("stroke-width", 1.5)
+        .attr("d", highschoolLine); 
+
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "blue")
+        .attr("stroke-width", 1.5)
+        .attr("d", associateLine);         
+
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "green")
+        .attr("stroke-width", 1.5)
+        .attr("d", bachelorLine);
+};
+
+    console.log("from hook", loading, data);
+
+    // svg.append("path") // add the line to svg
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "black")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", k12lessLine)
+    //     .attr("className", "K12LESS");
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "red")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", highschoolLine)
+    //     .attr("className", "HIGHSCHOOL");
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "blue")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", associateLine)
+    //     .attr("className", "ASSOCIATE");    
+
+    // svg.append("path")
+    //     .datum(formatData)
+    //     .attr("fill", "none")
+    //     .attr("stroke", "green")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", bachelorLine)
+    //     .attr("className", "BACHELOR");    
+
+    // console.log("from hook", loading, formatData);
+
+    /* Checkboxes */
+    // const update = () => {
+    //     console.log("im here")
+    //     // For each check box:
+    //     d3.selectAll(".checkbox").each(function(d) {
+    //         cb = d3.select(this);
+    //         grp = cb.property("value");
+
+    //         if (cb.property("checked")) { // If the box is check, I show the group
+    //             svg.select("." + grp)
+    //                 .transition()
+    //                 .duration(1000)
+    //                 .style("opacity", 1);
+    //         } else { // Otherwise I hide it
+    //             svg.select("." + grp)
+    //                 .transition()
+    //                 .duration(1000)
+    //                 .style("opacity", 0);
+    //         }
+    //     });
+    // }
+    // d3.selectAll(".checkbox").attr("checked", "checked"); //initialize checkboxes as checked
 
     svg.select("#BACHELOR-text").on("click", function(e, d) {
         // is the element currently visible ?
@@ -135,6 +246,7 @@ if (loading === true) { // Prevents extra appending
         d3.select("#BACHELOR").transition().style("opacity", currentOpacity == 1 ? 0:1)
     });
 };
+
     return(
         <div className="vis">
             <p>{loading && "Loading data!"}</p>
@@ -152,6 +264,33 @@ if (loading === true) { // Prevents extra appending
             {/* Visualization */}
             <h3>Educational Disparities Throughout the Years 2001 to 2021</h3>
             <p>Interactivity: click on legend to view individuals graph </p>
+            <p> About the dataset: place holder</p>
+            <p> Analysis questions: place holder</p>
+
+            {/* Visualization */}
+            <h3>Visualization name goes here</h3>
+            <div id="line-chart" ></div>
+
+            
+
+            <div className={classes.root}>
+                <Typography id="range-slider" gutterBottom>
+                    Year Range
+                </Typography>
+                <Slider
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    aria-labelledby="range-slider"
+                    getAriaValueText={valuetext}
+                    step={1}
+                    marks
+                    min={2001}
+                    max={2021}
+                />
+            </div>
+
+
             <br></br>
             <div id="line-chart" ></div>
             <br></br>
@@ -201,7 +340,11 @@ if (loading === true) { // Prevents extra appending
             <p><b>Rayna commentary on the development process:</b> For my assignment 2, I chose to utilize data that touched on educational rates for people in the U.S. The analysis I portrayed consisted of discussions regarding the disparities and polarizations between the educational rates within the U.S. This data was extremely interesting to me because I wanted to see how time changed how the U.S. thought about and responded to education. It was clear from my analysis that from the 1970s to 2018 there had been a significant increase in the popularity of education. While my dataset did not contain information for the years during the pandemic, I expressed the interesting takeaways I gained from my analysis in A2 which inspired our pursuit of obtaining education level data including the years 2020 and 2021. Since I primarily focused on utilizing Tableau for A2 I was open to exploring many methodologies that we could leverage to highlight meaningful realizations from the dataset. These methods included functionalities like a checkbox, line chart, hover, zoom, and slider. Of these functions, we established that the line chart would be the best way to display the data and information we wanted to convey and aligns well with sequential or time variables. Additionally, we established that the checkbox was a necessity in order to display only one educational level at one time. Currently, we are still attempting to implement the slider functionality in order to emphasize certain time periods which would cater to our question since it only focuses on the year before and after COVID-19. For the Slider, I helped Alex and Akoly debug on how to make it appear on the webpage and function properly.</p>
             <p><b>Jisu commentary on the development process:</b> When our group decided to create a data visualization for A3, we referred to Rayna’s dataset which is the unemployment data by degree level. And, we wanted to connect the data with the Covid-19 period, for example, how Covid-19 impacts the unemployment rate. For the data visualization with this topic, we came up with an idea for the functionalities such as checkbox, line chart, hover, zoom, and slider. Because the data’s values are changing depending on the time and there are four different degree levels. Therefore, we decided to create the line chart as a base of data visualization. And, checkbox, hover, and zoom are similar together, so we have unified our views with checkbox functionality to see the specific degree level of the unemployment rate. Also, to check the unemployment rate at pandemic, we discussed creating the slider.  To create the lines with four different degree levels, it took 3-4 hours to filter the data. However, after Akoly created the x-axis and y-axis, It was much easier to render the line on the webpage. I think I spent less than 2 hours creating the lines. Also, I edited the y-axis to match our dataset. After creating the lines, I tried to implement a checkbox, so in order to find the way to create the checkbox, I spent over 2 hours researching and testing the code with ours. However,  I was not able to connect lines with the checkbox. So, I asked Kayla for help to connect the checkbox with lines.</p>
         </div>
+
+
     );
+
 };
+
 
 export default App;

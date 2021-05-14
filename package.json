@@ -15,12 +15,15 @@
   },
   "homepage": "https://github.com/RaynyT/INFO_474_A3#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
     "d3": "^6.7.0",
     "d3-array": "^2.12.1",
     "d3-fetch": "^2.0.0",
     "d3-scale": "^3.3.0",
     "parcel": "^2.0.0-beta.2",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-slider": "^1.1.4"
   }
 }
