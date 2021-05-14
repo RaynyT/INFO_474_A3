@@ -54,6 +54,15 @@ const App = () => {
             width: 300,
         }});
 
+        const classes = useStyles();
+        const [value, setValue] = useState([minYear, maxYear]);
+    
+        const handleChange = (event, newValue) => {
+            setValue(newValue);
+            setMinYear(newValue);
+            //console.log(minYear + "   " + maxYear)
+        }
+
 if (loading === true) { // Prevents extra appending
 
     const svg = d3 // create the svg box for the viz and appending it to line-chart div
@@ -82,12 +91,7 @@ if (loading === true) { // Prevents extra appending
         return `${value}`;
     }
 
-    const classes = useStyles();
-    const [value, setValue] = useState([minYear, maxYear]);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    }
+    
 
 
 if (loading === true) { // Prevents extra appending
@@ -269,11 +273,11 @@ if (loading === true) { // Prevents extra appending
 
             {/* Visualization */}
             <h3>Visualization name goes here</h3>
-            <div id="line-chart" ></div>
-
             
+            <div id="line-chart" ></div>
+            <br></br>
 
-            <div className={classes.root}>
+            <div className={classes.root} margin={20}>
                 <Typography id="range-slider" gutterBottom>
                     Year Range
                 </Typography>
@@ -290,10 +294,6 @@ if (loading === true) { // Prevents extra appending
                 />
             </div>
 
-
-            <br></br>
-            <div id="line-chart" ></div>
-            <br></br>
             <h3>Final write-up</h3>
             <p><b>Rationale for our design decisions:</b> Since we were interested in seeing the unemployment 
             rate before the pandemic compared to 1 year after the start of the pandemic, we thought that a line 
