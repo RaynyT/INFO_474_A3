@@ -153,7 +153,7 @@ if (loading === true) { // Prevents extra appending
         .attr('fill', '#000')
         .style('font-size', '20px')
         .style('text-anchor', 'middle')
-        .text('Unemployment Rate');    
+        .text('Unemployment Rate (%)');    
 
 };
     return(
