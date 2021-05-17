@@ -4,6 +4,9 @@ import { text } from "d3";
 import * as d3 from "d3";
 import { max } from "d3-array"
 import { scaleLinear, scaleTime } from "d3-scale"
+import { Axis, Orient } from 'd3-axis-for-react';
+import Hover from './hover.js';
+
 
 //References:
 //https://www.d3-graph-gallery.com/graph/interactivity_button.html
@@ -32,6 +35,16 @@ const App = () => {
     const margin = { top: 20, right: 20, bottom: 50, left: 65 }, //size
         width = 1000 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
+
+    // define x scale for hover
+    const xScaleHover = scaleTime() //  x-axis for MONTH - YEAR
+        .domain([d3.min(formatData, d => d.Month), d3.max(formatData, d => d.Month)]).nice()
+        .range([0, width])
+
+    // define y scale for hover
+    const yScaleHover = scaleLinear() // y axis for HIGH SCHOOL
+        .domain([0, 25])
+        .range([height, 0]);
 
 if (loading === true) { // Prevents extra appending
 
@@ -155,7 +168,8 @@ if (loading === true) { // Prevents extra appending
         .style('text-anchor', 'middle')
         .text('Unemployment Rate (%)');    
 
-};
+    };
+
     return(
         <div className="vis">
             <p>{loading && "Loading data!"}</p>
@@ -163,18 +177,38 @@ if (loading === true) { // Prevents extra appending
             <h3> Dataset: Unemployment rates for persons 25 years and older by educational attainment</h3>
             <p> <b>About the dataset:</b> Our dataset comes from the <a href="https://www.bls.gov/"> U.S Bureau of Labor and Statistics </a>site which hosts many datasets and visualizations to be explored about various elements that the Bureau collects. For instance: unemployment and the associated elements like the reason for unemployment as well as duration from household data and employment information from industry which includes hourly wages and weekly hours. As our team explored the many datasets this site contains, we gravitated towards unemployment rates for persons 25 years and older by educational attainment that is seasonally adjusted. This data set intrigued us because it showcases these rates over the years of 2001 to 2021 and this period includes the recent pandemic that has impacted the world. Since this data included information throughout the pandemic, we wanted to explore how COVID-19 impacted the unemployment rates for this age period and how the education levels compared for this age group. This data specifically came from personal reporting from the household and not from industries and was gathered anonymously to protect people’s privacy. This data also showcases the percent distribution for each month which could provide interesting findings when aggregated or filtered. Interestingly though, if one were to sum all the reported educational rates, we can see that they will not usually sum to 100% and this is because not everyone submits information to the US census this, we must consider that this data does not account for all the U.S. population. Since our question focuses on 2018-2021, we included slide bar functionality to highlight the important information that would answer our question. It is clear from the data that the hierarchy of the education levels does showcase a pattern for unemployment rates but what is not visible from the raw data, is the disparities and polarizations between these four educational levels, thus this is something we will touch on in our analysis.</p>
             <p> <b>Analysis questions:</b> What were the unemployment rates 12 months before COVID-19 started compared to the unemployment rates in the 12 months after COVID-19 started or in other terms, how have unemployment rates been impacted in the US due to COVID-19?</p>
-            <p><b>Analysis Topics:</b>
-                <ul>
-                    <li>Disparities/Polarization Between the Education Levels: Did the gaps lessen or increase?</li>
-                    <li>Peaks/Troughs: Were there any noticeable changes in unemployment around the time COVID-19 impacted the world and the U.S.?</li>
-                </ul>
-            </p>
+            <p><b>Analysis Topics:</b></p>
+            <ul>
+                <li>Disparities/Polarization Between the Education Levels: Did the gaps lessen or increase?</li>
+                <li>Peaks/Troughs: Were there any noticeable changes in unemployment around the time COVID-19 impacted the world and the U.S.?</li>
+            </ul>
 
             {/* Visualization */}
             <h3>Educational Disparities Throughout the Years 2001 to 2021</h3>
             <p style={{ color: "#FF5147" , fontSize: "17px"}}>Interactivity: click on legend to view individuals graph ▼</p>
             <br></br>
-            <div id="line-chart" ></div>
+            <div id="line-chart" >
+                {/* define our axes here. First, we need to position them with <g> elements */}
+                <svg style={{
+                    display: "block",
+                    margin: "auto"
+                }} width={width} height={height}>
+                <g transform={`translate(${margin}, 0)`} className="axisLeft">
+                        {/* define our axis here */}
+                        <Axis
+                            orient={Orient.left}
+                            scale={yScaleHover}
+                        />
+                </g>
+                <g transform={`translate(0, ${height - margin})`} className="axisBottom">
+                        <Axis
+                            orient={Orient.bottom}
+                            scale={xScaleHover}
+                        />
+                </g>
+                </svg>
+            </div>
+            <Hover></Hover>
             <br></br>
             <h3>Final write-up</h3>
             <p><b>Rationale for our design decisions:</b> Since we were interested in seeing the unemployment 
